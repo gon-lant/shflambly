@@ -2,4 +2,15 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  color:white;
+  background: black;
+}
+footer {
+	position: fixed;
+    height: 50px;
+    background-color: DarkSlateGray;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
 }

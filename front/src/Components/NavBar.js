@@ -1,14 +1,26 @@
  import React, {Component} from 'react';
- import {Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, FormControl, Button} from 'react-bootstrap';
- import Router, {Route, Link, withRouter} from 'react-router-dom';
+ import {Navbar, Nav, NavItem, FormGroup, FormControl, Button} from 'react-bootstrap';
+ import {Route, Link} from 'react-router-dom';
  import GoogleLogin  from 'react-google-login';
+ import UserStore from '../Stores/UserStore';
 
 class NavBar extends Component{
 
   constructor (props, context){
     super(props, context);
+    this.state={};
   }
 
+  componentWillMount() {
+    UserStore.on('USER_LOGGED_IN', () =>{
+      let userData = UserStore.getUser();
+      this.setState(
+        {loggedIn: true,
+          userData: userData
+      });
+
+    });
+  }
 
   render(){
     const responseGoogle = (response) => {
@@ -16,6 +28,10 @@ class NavBar extends Component{
     }
     const NavItemNavigate = () => (
       <Route render={({history})=>(<NavItem onClick={() => {history.push('/cards')}}>Cards</NavItem>
+      )} />
+      ); 
+    const NavLoginLink = () => (
+      <Route render={({history})=>(<NavItem onClick={() => {history.push('/login')}}>Login</NavItem>
       )} />
       );
     
@@ -30,7 +46,7 @@ class NavBar extends Component{
       <Navbar.Collapse>
         <Nav>
           <NavItemNavigate/>
-          <NavItem eventKey={2} href="#">Link</NavItem>
+          <NavLoginLink/>
           
         </Nav>
         <Navbar.Form pullLeft>

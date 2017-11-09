@@ -6,6 +6,7 @@ import App from './Pages/App';
 import registerServiceWorker from './registerServiceWorker';
 import NavBar from './Components/NavBar';
 import Cards from './Pages/Cards';
+import Login from './Pages/Login';
 
 ReactDOM.render(
 	<div>
@@ -15,7 +16,9 @@ ReactDOM.render(
 				<Switch>
 					<Route exact path="/" component={App}/>
 					<Route path="/cards" component={Cards}/>
+					<Route path="/login" component={Login}/>
 				</Switch>	
+				<footer ></footer>
 			</div>
 		</BrowserRouter>
 	</div>
